@@ -1,0 +1,2 @@
+from .Compra import CompraRepository
+

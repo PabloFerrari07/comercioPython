@@ -40,6 +40,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{PATH}{DB_NAME}'
     db.init_app(app)
     import main.resources as resources
+
     api.add_resource(resources.ClientesResource, '/clientes')
     api.add_resource(resources.ClienteResource, '/cliente/<id>')
     api.add_resource(resources.UsuariosResource,'/usuarios')
@@ -50,10 +51,12 @@ def create_app():
 
     api.add_resource(resources.ProductosResource,'/productos')
     api.add_resource(resources.ProductoResource,'/producto/<id>')
-    
+    import main.Controllers as controllers
     api.add_resource(resources.ProductosCompraResource,'/productos-compras') 
     api.add_resource(resources.ProductoCompraResource,'/producto-compra/<id>')
 
+    api.add_resource(controllers.CompraController,'/compra-controller/<id>')
+    api.add_resource(controllers.ComprasController,'/compras-controller')
     api.init_app(app)
 
     #Configurar JWT
